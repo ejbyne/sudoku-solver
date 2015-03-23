@@ -39,6 +39,28 @@ Board.prototype.findBlock = function(coord) {
 					 letters[2] + numbers[0], letters[2] + numbers[1], letters[2] + numbers[2]]);
 };
 
+Board.prototype.findOtherRelevantBlockCells = function(coord) {
+	var _this = this;
+	var letters = this._findLetterArray(coord);
+	var numbers = this._findNumberArray(coord);
+	var otherRelevantBlockCells = [];
+	letters.forEach(function(letter) {
+		_this.NUMBERS.forEach(function(NUMBER) {
+			if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1) {
+				otherRelevantBlockCells.push(letter + NUMBER);
+			}
+		});
+	});
+	numbers.forEach(function(number) {
+		_this.LETTERS.forEach(function(LETTER) {
+			if (_this.findBlock(coord).indexOf(LETTER + number) === -1) {
+				otherRelevantBlockCells.push(LETTER + number);
+			}
+		});
+	});
+	return otherRelevantBlockCells;
+};
+
 Board.prototype.splitGridCoordsIntoRows = function() {
 	var coords = Object.keys(this.grid);
 	var rows = [];

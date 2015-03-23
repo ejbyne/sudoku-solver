@@ -65,12 +65,7 @@ describe('Board', function() {
 		});
 
 		it('knows the other four blocks which affect the solutions to a block', function() {
-			expect(board.findOtherRelevantBlocks('A1')).toEqual(
-				['A4', 'A5', 'A6', 'B4', 'B5', 'B6', 'C4', 'C5', 'C6'],
-				['A7', 'A8', 'A9', 'B7', 'B8', 'B9', 'C7', 'C8', 'C9'],
-				['D1', 'D2', 'D3', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3'],
-				['G1', 'G2', 'G3', 'H1', 'H2', 'H3', 'I1', 'I2', 'I3']
-			)
+			expect(board.findOtherRelevantBlockCells('A1').length).toEqual(36);
 		});
 
 	});
