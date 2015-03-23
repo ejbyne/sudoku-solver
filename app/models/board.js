@@ -39,26 +39,30 @@ Board.prototype.findBlock = function(coord) {
 					 letters[2] + numbers[0], letters[2] + numbers[1], letters[2] + numbers[2]]);
 };
 
-Board.prototype.findOtherRelevantBlockCells = function(coord) {
+Board.prototype.findOtherRelevantCells = function(coord) {
 	var _this = this;
 	var letters = this._findLetterArray(coord);
 	var numbers = this._findNumberArray(coord);
-	var otherRelevantBlockCells = [];
+	var otherRelevantCells = [];
 	letters.forEach(function(letter) {
 		_this.NUMBERS.forEach(function(NUMBER) {
-			if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1) {
-				otherRelevantBlockCells.push(letter + NUMBER);
+			if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1 &&
+				_this.findRow(coord).indexOf(letter + NUMBER) === -1 &
+				_this.findColumn(coord).indexOf(letter + NUMBER) === -1) {
+				otherRelevantCells.push(letter + NUMBER);
 			}
 		});
 	});
 	numbers.forEach(function(number) {
 		_this.LETTERS.forEach(function(LETTER) {
-			if (_this.findBlock(coord).indexOf(LETTER + number) === -1) {
-				otherRelevantBlockCells.push(LETTER + number);
+			if (_this.findBlock(coord).indexOf(LETTER + number) === -1 &&
+				_this.findRow(coord).indexOf(LETTER + number) === -1 &&
+				_this.findColumn(coord).indexOf(LETTER + number) === -1) {
+				otherRelevantCells.push(LETTER + number);
 			}
 		});
 	});
-	return otherRelevantBlockCells;
+	return otherRelevantCells;
 };
 
 Board.prototype.splitGridCoordsIntoRows = function() {

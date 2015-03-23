@@ -64,8 +64,8 @@ describe('Board', function() {
 			expect(board.findBlock('A1')).toEqual(['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']);
 		});
 
-		it('knows the other four blocks which affect the solutions to a block', function() {
-			expect(board.findOtherRelevantBlockCells('A1').length).toEqual(36);
+		it('knows the remaining cells within the other four blocks which affect the solutions to a block', function() {
+			expect(board.findOtherRelevantCells('A1').length).toEqual(24);
 		});
 
 	});

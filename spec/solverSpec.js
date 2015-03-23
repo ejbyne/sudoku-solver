@@ -38,8 +38,8 @@ describe('Solver', function() {
 		expect(board.grid.A3).toEqual([1, 2, 4, 7]);
 	});
 
-	it('can disregard a number already existing in each of the other four blocks', function() {
-		solver._checkOtherBlocks('E3', board);
+	it('can disregard a number already existing in the other cells of each of the other four blocks', function() {
+		solver._checkOtherRelevantCells('E3', board);
 		expect(board.grid.E3).toEqual(6);
 	});
 

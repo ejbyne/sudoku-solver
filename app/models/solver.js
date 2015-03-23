@@ -1,11 +1,16 @@
 function Solver() {}
 
 Solver.prototype.solveBoard = function(board) {
+	var startTime = new Date().getTime();
 	for (var cell in board.grid) {
 		if (Array.isArray(board.grid[cell])) {
 			this._checkRelevantCells(cell, board);
 			this._removeArrayIfLastNumber(cell, board);
 		}
+		this._checkOtherRelevantCells(cell, board);
+	}
+	if ((new Date().getTime() - startTime) > 500) {
+		throw('Insufficient or invalid data provided. Please try again.');
 	}
 	this._repeatIfAnyCellNotSolved(board);
 };
@@ -29,6 +34,20 @@ Solver.prototype._checkCellColumn = function(cell, board) {
 Solver.prototype._checkCellBlock = function(cell, board) {
 	var block = board.findBlock(cell);
 	this._removeExistingNumbers(cell, board, block);
+};
+
+Solver.prototype._checkOtherRelevantCells = function(cell, board) {
+	if (Array.isArray(board.grid[cell])) {
+		var otherRelevantCells = board.findOtherRelevantCells(cell);
+		board.grid[cell].forEach(function(number) {
+			if (otherRelevantCells.filter(function(cell) {
+				return board.grid[cell] === number;
+			}).length === 4) {
+				board.grid[cell] = number;
+				return;
+			}
+		});
+	}
 };
 
 Solver.prototype._removeExistingNumbers = function(cell, board, section) {
