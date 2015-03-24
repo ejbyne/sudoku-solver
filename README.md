@@ -17,7 +17,7 @@ This was a challenge to build a Sudoku checker using any technology that can aut
 
 > Images courtesy of Wikipedia where you can find more [information](http://en.wikipedia.org/wiki/Sudoku).
 
-I opted to build the app using Node.js and JavaScript. It is not yet complete and currently only solves simple puzzles, but I intend to return to this shortly to improve the logic.
+I opted to build the app using Node.js and JavaScript. The app currently solves Sudoku puzzles on The Times' website which have a rating of "mild", "easy" or difficult". It does not currently solve puzzles with a rating of "fiendish" and the logic would need to be improved in order achieve this.
 
 ## Technologies
 
@@ -43,5 +43,6 @@ I opted to build the app using Node.js and JavaScript. It is not yet complete an
 
 ## To do list
 
-- Improve logic to solve more complex puzzles
+- Improve logic to solve more fiendish puzzles
 - Turn into single page app with Ajax requests
+- Improve CSS
