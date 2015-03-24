@@ -43,6 +43,20 @@ describe('Solver', function() {
 		expect(board.grid.E3).toEqual(6);
 	});
 
+	it('can check for duplicate doubles in the same section and remove surplus numbers', function() {
+		var cell = [1, 2];
+		var section = [[1, 2], [1, 2], [1, 3]];
+		solver._checkForDoubles(cell, section);
+		expect(section).toEqual([[1, 2], [1, 2], [3]]);
+	});
+
+	it('can check for triplicate triples in the same section and remove surplus numbers', function() {
+		var cell = [1, 2, 3];
+		var section = [[1, 2, 3], [1, 2], [2, 3], [2, 3, 4]];
+		solver._checkForTriples(cell, section);
+		expect(section).toEqual([[1, 2, 3], [1, 2], [2, 3], [4]]);
+	});
+
 	it('can convert any array of one number into an integer', function() {
 		board.grid.A1 = [5];
 		solver._removeArrayIfLastNumber('A1', board);
