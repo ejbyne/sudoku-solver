@@ -21,12 +21,8 @@ var controller = function(app) {
 				board.insertInitialNumber(coord, parseInt(initialNumbers[coord]));
 			}
 		}
-		try {
-			solver.solveBoard(board);
-			response.render('solution', {rows: rows, board: board});
-		} catch (error) {
-			response.status(403).send({ success: false, message: error });
-		}
+		solver.solveBoard(board);
+		response.render('solution', {rows: rows, board: board});
 	});
 
 };

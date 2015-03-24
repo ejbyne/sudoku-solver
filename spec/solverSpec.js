@@ -44,17 +44,19 @@ describe('Solver', function() {
 	});
 
 	it('can check for duplicate doubles in the same section and remove surplus numbers', function() {
-		var cell = [1, 2];
-		var section = [[1, 2], [1, 2], [1, 3]];
-		solver._checkForDoubles(cell, section);
-		expect(section).toEqual([[1, 2], [1, 2], [3]]);
+		var board = { grid: { A1: [1, 2], A2: [1, 2], A3: [1, 3] } };
+		var cell = 'A1';
+		var section = ['A1', 'A2', 'A3'];
+		solver._checkForDoubles(cell, board, section);
+		expect(board).toEqual({ grid: { A1: [1, 2], A2: [1, 2], A3: [3] } });
 	});
 
 	it('can check for triplicate triples in the same section and remove surplus numbers', function() {
-		var cell = [1, 2, 3];
-		var section = [[1, 2, 3], [1, 2], [2, 3], [2, 3, 4]];
-		solver._checkForTriples(cell, section);
-		expect(section).toEqual([[1, 2, 3], [1, 2], [2, 3], [4]]);
+		var board = { grid: { A1: [1, 2, 3], A2: [1, 2], A3: [2, 3], A4: [2, 3, 4] } };
+		var cell = 'A1';
+		var section = ['A1', 'A2', 'A3', 'A4'];
+		solver._checkForTriples(cell, board, section);
+		expect(board).toEqual({ grid: { A1: [1, 2, 3], A2: [1, 2], A3: [2, 3], A4: [4] } });
 	});
 
 	it('can convert any array of one number into an integer', function() {
