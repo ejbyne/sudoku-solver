@@ -7,17 +7,19 @@
 
 This was a challenge to build a Sudoku checker using any technology that can automatically generate and solve any 9 x 9 [Sudoku](http://en.wikipedia.org/wiki/Sudoku) grid such as the one below:
 
-## Unsolved
+### Unsolved
 
 ![unsolved](/public/img/sudoku_unsolved.png)
 
-## Solved
+### Solved
 
 ![solved](/public/img/sudoku_solved.png)
 
 > Images courtesy of Wikipedia where you can find more [information](http://en.wikipedia.org/wiki/Sudoku).
 
 I opted to build the app using Node.js and JavaScript. The app currently solves Sudoku puzzles on The Times' website which have a rating of "mild", "easy" or difficult". It does not currently solve puzzles with a rating of "fiendish" and the logic would need to be improved in order achieve this.
+
+The live version of the app is available [here](https://eds-sudoku-solver.herokuapp.com).
 
 ## Technologies
 
@@ -43,6 +45,6 @@ I opted to build the app using Node.js and JavaScript. The app currently solves 
 
 ## To do list
 
-- Improve logic to solve more fiendish puzzles
+- Improve logic to solve "fiendish" level puzzles
 - Turn into single page app with Ajax requests
 - Improve CSS
