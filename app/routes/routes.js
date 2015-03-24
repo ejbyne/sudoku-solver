@@ -1,4 +1,4 @@
-var controller = function(app) {
+var routes = function(app) {
 
 	var Board = require('../models/board.js');
 	var Solver = require('../models/solver.js');
@@ -27,4 +27,4 @@ var controller = function(app) {
 
 };
 
-module.exports = controller;
+module.exports = routes;
