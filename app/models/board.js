@@ -47,10 +47,10 @@ Board.prototype.findBlock = function(coord) {
 };
 
 Board.prototype.findOtherRelevantCoords = function(coord) {
-  var otherRelevantCoords = [];
-  this._findOtherHorizontalCoords(coord, this._findLetterArray(coord), otherRelevantCoords);
-  this._findOtherVerticalCoords(coord, this._findNumberArray(coord), otherRelevantCoords);
-  return otherRelevantCoords;
+  var coordArray = [];
+  this._findAdjacentCoords(coord, this._findLetterArray(coord), this.NUMBERS, coordArray);
+  this._findAdjacentCoords(coord, this.LETTERS, this._findNumberArray(coord), coordArray);
+  return coordArray;
 };
 
 Board.prototype._findSelectedCoords = function(coord, characterNumber) {
@@ -74,27 +74,14 @@ Board.prototype._findSelectedArray = function(coord, characterNumber, arrayOptio
   })[0];
 };
 
-Board.prototype._findOtherHorizontalCoords = function(coord, letters, coordArray) {
+Board.prototype._findAdjacentCoords = function(coord, firstCoordChars, secondCoordChars, coordArray) {
   var _this = this;
-  letters.forEach(function(letter) {
-    _this.NUMBERS.forEach(function(NUMBER) {
-      if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1 &&
-        _this.findRow(coord).indexOf(letter + NUMBER) === -1 &&
-        _this.findColumn(coord).indexOf(letter + NUMBER) === -1) {
-        coordArray.push(letter + NUMBER);
-      }
-    });
-  });
-};
-
-Board.prototype._findOtherVerticalCoords = function(coord, numbers, coordArray) {
-  var _this = this;
-  numbers.forEach(function(number) {
-    _this.LETTERS.forEach(function(LETTER) {
-      if (_this.findBlock(coord).indexOf(LETTER + number) === -1 &&
-        _this.findRow(coord).indexOf(LETTER + number) === -1 &&
-        _this.findColumn(coord).indexOf(LETTER + number) === -1) {
-        coordArray.push(LETTER + number);
+  firstCoordChars.forEach(function(firstCoordChar) {
+    secondCoordChars.forEach(function(secondCoordChar) {
+      if (_this.findBlock(coord).indexOf(firstCoordChar + secondCoordChar) === -1 &&
+        _this.findRow(coord).indexOf(firstCoordChar + secondCoordChar) === -1 &&
+        _this.findColumn(coord).indexOf(firstCoordChar + secondCoordChar) === -1) {
+        coordArray.push(firstCoordChar + secondCoordChar);
       }
     });
   });
