@@ -1,21 +1,21 @@
 {
   "name": "sudoku-challenge",
   "version": "1.0.0",
-  "description": "Build a Sudoku checker that can automatically generate and solve any 9 x 9 [Sudoku](http://en.wikipedia.org/wiki/Sudoku) grid such as the one below:",
+  "description": "Build a Sudoku checker that can automatically generate and solve any 9 x 9 Sudoku grid",
   "main": "server.js",
   "scripts": {
     "test": "grunt travis --verbose"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ejbyne/Sudoku-Challenge.git"
+    "url": "https://github.com/ejbyne/sudoku-solver.git"
   },
   "author": "Edward Byne",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ejbyne/Sudoku-Challenge/issues"
+    "url": "https://github.com/ejbyne/sudoku-solver/issues"
   },
-  "homepage": "https://github.com/ejbyne/Sudoku-Challenge",
+  "homepage": "https://github.com/ejbyne/sudoku-solver",
   "devDependencies": {
     "casper-chai": "^0.2.1",
     "casperjs": "^1.1.0-beta3",

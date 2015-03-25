@@ -5,17 +5,7 @@
 
 ## Summary
 
-This was a challenge to build a Sudoku checker using any technology that can automatically generate and solve any 9 x 9 [Sudoku](http://en.wikipedia.org/wiki/Sudoku) grid such as the one below:
-
-### Unsolved
-
-![unsolved](/public/img/sudoku_unsolved.png)
-
-### Solved
-
-![solved](/public/img/sudoku_solved.png)
-
-> Images courtesy of Wikipedia where you can find more [information](http://en.wikipedia.org/wiki/Sudoku).
+This was a challenge to build a Sudoku checker that can automatically generate and solve any 9 x 9 Sudoku grid such as the one shown on the Wikipedia [Sudoku entry](http://en.wikipedia.org/wiki/Sudoku).
 
 I opted to build the app using Node.js and JavaScript. The app currently solves Sudoku puzzles on The Times' website which have a rating of "mild", "easy" or difficult". It does not currently solve puzzles with a rating of "fiendish" and the logic would need to be improved in order achieve this.
 
@@ -42,6 +32,35 @@ The live version of the app is available [here](https://eds-sudoku-solver.heroku
 
 ### Solution screen
 <img src="images/solution_screenshot.png">
+
+## Instructions
+
+To try the app locally, please clone this repository on your machine:
+
+```
+$ git clone https://github.com/ejbyne/sudoku-solver.git
+```
+
+Change into the directory and npm install the modules:
+
+```
+$ cd sudoku-solver
+$ npm install
+```
+
+Start the node server:
+
+```
+$ npm start
+```
+
+Visit <a href="http://localhost:3000">http://localhost:3000</a>.
+
+Run the tests:
+
+```
+$ grunt
+```
 
 ## To do list
 
