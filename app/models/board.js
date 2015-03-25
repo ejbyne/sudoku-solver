@@ -68,33 +68,33 @@ Board.prototype._findNumberArray = function(coord) {
 	
 };
 
-Board.prototype._findSelectedArray = function(coord, characterNumber, arrays) {
-	return arrays.filter(function(arrayOption) {
+Board.prototype._findSelectedArray = function(coord, characterNumber, arrayOptions) {
+	return arrayOptions.filter(function(arrayOption) {
 		return arrayOption.indexOf(coord[characterNumber]) > -1;
 	})[0];
 };
 
-Board.prototype._findOtherHorizontalCoords = function(coord, letters, cellArray) {
+Board.prototype._findOtherHorizontalCoords = function(coord, letters, coordArray) {
 	var _this = this;
 	letters.forEach(function(letter) {
 		_this.NUMBERS.forEach(function(NUMBER) {
 			if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1 &&
 				_this.findRow(coord).indexOf(letter + NUMBER) === -1 &&
 				_this.findColumn(coord).indexOf(letter + NUMBER) === -1) {
-				cellArray.push(letter + NUMBER);
+				coordArray.push(letter + NUMBER);
 			}
 		});
 	});
 };
 
-Board.prototype._findOtherVerticalCoords = function(coord, numbers, cellArray) {
+Board.prototype._findOtherVerticalCoords = function(coord, numbers, coordArray) {
 	var _this = this;
 	numbers.forEach(function(number) {
 		_this.LETTERS.forEach(function(LETTER) {
 			if (_this.findBlock(coord).indexOf(LETTER + number) === -1 &&
 				_this.findRow(coord).indexOf(LETTER + number) === -1 &&
 				_this.findColumn(coord).indexOf(LETTER + number) === -1) {
-				cellArray.push(LETTER + number);
+				coordArray.push(LETTER + number);
 			}
 		});
 	});

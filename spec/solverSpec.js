@@ -24,17 +24,17 @@ describe('Solver', function() {
 	});
 
 	it('can disregard any number already existing in a cell\'s row', function() {
-		solver._checkCellRow('A3', board);
+		solver._removeInvalidNumbers('A3', board, board.findRow('A3'));
 		expect(board.grid.A3).toEqual([1, 2, 4, 6, 8, 9]);
 	});
 
 	it('can disregard any number already existing in a cell\'s column', function() {
-		solver._checkCellColumn('A3', board);
+		solver._removeInvalidNumbers('A3', board, board.findColumn('A3'));
 		expect(board.grid.A3).toEqual([1, 2, 3, 4, 5, 6, 7, 9]);;
 	});
 
 	it('can disregard any number already existing in a cell\'s block', function() {
-		solver._checkCellBlock('A3', board);
+		solver._removeInvalidNumbers('A3', board, board.findBlock('A3'));
 		expect(board.grid.A3).toEqual([1, 2, 4, 7]);
 	});
 

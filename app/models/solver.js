@@ -1,69 +1,51 @@
 function Solver() {}
 
 Solver.prototype.solveBoard = function(board) {
-	for (var cell in board.grid) {
-		if (Array.isArray(board.grid[cell])) {
+	for (var coord in board.grid) {
+		if (Array.isArray(board.grid[coord])) {
 			this._checkCells(board);
 		}
 	}
 };
 
 Solver.prototype._checkCells = function(board) {
-	for (var cell in board.grid) {
-		if (Array.isArray(board.grid[cell])) {
-			this._checkRelevantCells(cell, board);
-			this._removeArrayIfLastNumber(cell, board);
+	for (var coord in board.grid) {
+		if (Array.isArray(board.grid[coord])) {
+			this._checkRelevantCells(coord, board);
+			this._removeArrayIfLastNumber(coord, board);
 		}
 	}
 };
 
-Solver.prototype._checkRelevantCells = function(cell, board) {
-	this._checkCellRow(cell, board);
-	this._checkCellColumn(cell, board);
-	this._checkCellBlock(cell, board);
-	this._checkOtherRelevantCells(cell, board);
+Solver.prototype._checkRelevantCells = function(coord, board) {
+	this._removeInvalidNumbers(coord, board, board.findRow(coord));
+	this._removeInvalidNumbers(coord, board, board.findColumn(coord));
+	this._removeInvalidNumbers(coord, board, board.findBlock(coord));
+	this._checkOtherRelevantCells(coord, board);
 };
 
-Solver.prototype._checkCellRow = function(cell, board) {
-	var row = board.findRow(cell);
-	this._removeExistingNumbers(cell, board, row);
-	this._checkForDoubles(cell, board, row);
-	this._checkForTriples(cell, board, row);
+Solver.prototype._removeInvalidNumbers = function(coord, board, section) {
+	this._removeExistingNumbers(coord, board, section);
+	this._checkForDoubles(coord, board, section);
+	this._checkForTriples(coord, board, section);
 };
 
-Solver.prototype._checkCellColumn = function(cell, board) {
-	var column = board.findColumn(cell);
-	this._removeExistingNumbers(cell, board, column);
-	this._checkForDoubles(cell, board, column);
-	this._checkForTriples(cell,board, column);
+Solver.prototype._checkOtherRelevantCells = function(coord, board) {
+	board.grid[coord].forEach(function(number) {
+		if (board.findOtherRelevantCoords(coord).filter(function(otherCoord) {
+			return board.grid[otherCoord] === number;
+		}).length === 4) {
+			board.grid[coord] = number;
+			return;
+		}
+	});
 };
 
-Solver.prototype._checkCellBlock = function(cell, board) {
-	var block = board.findBlock(cell);
-	this._removeExistingNumbers(cell, board, block);
-	this._checkForDoubles(cell, board, block);
-	this._checkForTriples(cell, board, block);
-};
-
-Solver.prototype._checkOtherRelevantCells = function(cell, board) {
-	if (Array.isArray(board.grid[cell])) {
-		var otherRelevantCells = board.findOtherRelevantCoords(cell);
-		board.grid[cell].forEach(function(number) {
-			if (otherRelevantCells.filter(function(cell) {
-				return board.grid[cell] === number;
-			}).length === 4) {
-				board.grid[cell] = number;
-				return;
-			}
-		});
-	}
-};
-
-Solver.prototype._removeExistingNumbers = function(cell, board, section) {
-	section.forEach(function(otherCell) {
-		if (board.grid[cell].indexOf(board.grid[otherCell]) > -1) {
-			var index = board.grid[cell].indexOf(board.grid[otherCell]);
-			board.grid[cell].splice(index, 1);
+Solver.prototype._removeExistingNumbers = function(coord, board, section) {
+	section.forEach(function(sectionCoord) {
+		if (board.grid[coord].indexOf(board.grid[sectionCoord]) > -1) {
+			var index = board.grid[coord].indexOf(board.grid[sectionCoord]);
+			board.grid[coord].splice(index, 1);
 		}
 	});
 };
@@ -119,10 +101,6 @@ Solver.prototype._removeArrayIfLastNumber = function(cell, board) {
 	if (board.grid[cell].length === 1) {
 		board.grid[cell] = board.grid[cell][0];
 	}
-};
-
-Solver.prototype._repeatIfAnyCellNotSolved = function(board) {
-
 };
 
 module.exports = Solver;
