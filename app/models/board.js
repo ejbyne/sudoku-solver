@@ -67,21 +67,15 @@ Board.prototype.findOtherRelevantCells = function(coord) {
 
 Board.prototype.splitGridCoordsIntoRows = function() {
 	var coords = Object.keys(this.grid);
-	var rows = [];
-	while (coords.length > 0) {
-		rows.push(coords.splice(0, 9));
-	}
-	return rows;
+	return coords.map(function(coord) {
+		return coords.splice(0, 9);
+	}).slice(0, 9);
 };
 
 Board.prototype._findSelectedCells = function(coord, characterNumber) {
-	var array = [];
-	for (var cell in this.grid) {
-		if (coord[characterNumber] === cell[characterNumber]) {
-			array.push(cell);
-		}
-	}
-	return array;
+	return Object.keys(this.grid).filter(function(cell) {
+		return coord[characterNumber] === cell[characterNumber];
+	});
 };
 
 Board.prototype._findLetterArray = function(coord) {
@@ -94,13 +88,9 @@ Board.prototype._findNumberArray = function(coord) {
 };
 
 Board.prototype._findSelectedArray = function(coord, characterNumber, arrays) {
-	var array;
-	arrays.forEach(function(arrayOption) {
-		if (arrayOption.indexOf(coord[characterNumber]) > -1) {
-			array = arrayOption;
-		}
-	});
-	return array;
+	return arrays.filter(function(arrayOption) {
+		return arrayOption.indexOf(coord[characterNumber]) > -1;
+	})[0];
 };
 
 module.exports = Board;

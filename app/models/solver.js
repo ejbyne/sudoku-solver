@@ -14,7 +14,6 @@ Solver.prototype._checkCells = function(board) {
 			this._checkRelevantCells(cell, board);
 			this._removeArrayIfLastNumber(cell, board);
 		}
-		this._checkOtherRelevantCells(cell, board);
 	}
 };
 
@@ -22,6 +21,7 @@ Solver.prototype._checkRelevantCells = function(cell, board) {
 	this._checkCellRow(cell, board);
 	this._checkCellColumn(cell, board);
 	this._checkCellBlock(cell, board);
+	this._checkOtherRelevantCells(cell, board);
 };
 
 Solver.prototype._checkCellRow = function(cell, board) {
