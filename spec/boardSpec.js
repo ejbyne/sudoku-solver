@@ -65,7 +65,7 @@ describe('Board', function() {
 		});
 
 		it('knows the remaining cells within the other four blocks which affect the solutions to a block', function() {
-			expect(board.findOtherRelevantCells('A1').length).toEqual(24);
+			expect(board.findOtherRelevantCoords('A1').length).toEqual(24);
 		});
 
 	});

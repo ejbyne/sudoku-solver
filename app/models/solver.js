@@ -47,7 +47,7 @@ Solver.prototype._checkCellBlock = function(cell, board) {
 
 Solver.prototype._checkOtherRelevantCells = function(cell, board) {
 	if (Array.isArray(board.grid[cell])) {
-		var otherRelevantCells = board.findOtherRelevantCells(cell);
+		var otherRelevantCells = board.findOtherRelevantCoords(cell);
 		board.grid[cell].forEach(function(number) {
 			if (otherRelevantCells.filter(function(cell) {
 				return board.grid[cell] === number;

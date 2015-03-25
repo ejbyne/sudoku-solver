@@ -31,11 +31,11 @@ Board.prototype.splitGridCoordsIntoRows = function() {
 };
 
 Board.prototype.findRow = function(coord) {
-	return this._findSelectedCells(coord, 0);
+	return this._findSelectedCoords(coord, 0);
 };
 
 Board.prototype.findColumn = function(coord) {
-	return this._findSelectedCells(coord, 1);
+	return this._findSelectedCoords(coord, 1);
 };
 
 Board.prototype.findBlock = function(coord) {
@@ -46,42 +46,16 @@ Board.prototype.findBlock = function(coord) {
 					 letters[2] + numbers[0], letters[2] + numbers[1], letters[2] + numbers[2]]);
 };
 
-Board.prototype.findOtherRelevantCells = function(coord) {
-	var otherRelevantCells = [];
-	this._findHorizontalCells(coord, this._findLetterArray(coord), otherRelevantCells);
-	this._findVerticalCells(coord, this._findNumberArray(coord), otherRelevantCells);
-	return otherRelevantCells;
+Board.prototype.findOtherRelevantCoords = function(coord) {
+	var otherRelevantCoords = [];
+	this._findOtherHorizontalCoords(coord, this._findLetterArray(coord), otherRelevantCoords);
+	this._findOtherVerticalCoords(coord, this._findNumberArray(coord), otherRelevantCoords);
+	return otherRelevantCoords;
 };
 
-Board.prototype._findSelectedCells = function(coord, characterNumber) {
-	return Object.keys(this.grid).filter(function(cell) {
-		return coord[characterNumber] === cell[characterNumber];
-	});
-};
-
-Board.prototype._findHorizontalCells = function(coord, letters, cellArray) {
-	var _this = this;
-	letters.forEach(function(letter) {
-		_this.NUMBERS.forEach(function(NUMBER) {
-			if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1 &&
-				_this.findRow(coord).indexOf(letter + NUMBER) === -1 &&
-				_this.findColumn(coord).indexOf(letter + NUMBER) === -1) {
-				cellArray.push(letter + NUMBER);
-			}
-		});
-	});
-};
-
-Board.prototype._findVerticalCells = function(coord, numbers, cellArray) {
-	var _this = this;
-	numbers.forEach(function(number) {
-		_this.LETTERS.forEach(function(LETTER) {
-			if (_this.findBlock(coord).indexOf(LETTER + number) === -1 &&
-				_this.findRow(coord).indexOf(LETTER + number) === -1 &&
-				_this.findColumn(coord).indexOf(LETTER + number) === -1) {
-				cellArray.push(LETTER + number);
-			}
-		});
+Board.prototype._findSelectedCoords = function(coord, characterNumber) {
+	return Object.keys(this.grid).filter(function(otherCoord) {
+		return coord[characterNumber] === otherCoord[characterNumber];
 	});
 };
 
@@ -98,6 +72,32 @@ Board.prototype._findSelectedArray = function(coord, characterNumber, arrays) {
 	return arrays.filter(function(arrayOption) {
 		return arrayOption.indexOf(coord[characterNumber]) > -1;
 	})[0];
+};
+
+Board.prototype._findOtherHorizontalCoords = function(coord, letters, cellArray) {
+	var _this = this;
+	letters.forEach(function(letter) {
+		_this.NUMBERS.forEach(function(NUMBER) {
+			if (_this.findBlock(coord).indexOf(letter + NUMBER) === -1 &&
+				_this.findRow(coord).indexOf(letter + NUMBER) === -1 &&
+				_this.findColumn(coord).indexOf(letter + NUMBER) === -1) {
+				cellArray.push(letter + NUMBER);
+			}
+		});
+	});
+};
+
+Board.prototype._findOtherVerticalCoords = function(coord, numbers, cellArray) {
+	var _this = this;
+	numbers.forEach(function(number) {
+		_this.LETTERS.forEach(function(LETTER) {
+			if (_this.findBlock(coord).indexOf(LETTER + number) === -1 &&
+				_this.findRow(coord).indexOf(LETTER + number) === -1 &&
+				_this.findColumn(coord).indexOf(LETTER + number) === -1) {
+				cellArray.push(LETTER + number);
+			}
+		});
+	});
 };
 
 module.exports = Board;
