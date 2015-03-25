@@ -18,7 +18,7 @@ module.exports = function(grunt){
     },
 
     jshint: {
-        src: ['app/**/*.js']
+      src: ['app/**/*.js']
     },
 
     watch: {

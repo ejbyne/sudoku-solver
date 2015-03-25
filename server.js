@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 require('./app/routes/routes.js')(app);
 
 server.listen(port, function() {
-	console.log('Server listening on port ' + port);
+  console.log('Server listening on port ' + port);
 });
 
 module.exports = server;
