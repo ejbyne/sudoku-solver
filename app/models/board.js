@@ -25,7 +25,7 @@ Board.prototype.insertInitialNumber = function(coord, number) {
 
 Board.prototype.splitGridCoordsIntoRows = function() {
   var coords = Object.keys(this.grid);
-  return coords.map(function(coord) {
+  return coords.map(function() {
     return coords.splice(0, 9);
   }).slice(0, 9);
 };
