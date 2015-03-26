@@ -5,9 +5,9 @@
 
 ## Summary
 
-This was a challenge to build a Sudoku checker that can automatically generate and solve any 9 x 9 Sudoku grid such as the one shown on the Wikipedia [Sudoku entry](http://en.wikipedia.org/wiki/Sudoku).
+This was a challenge to build a Sudoku checker that can automatically generate and solve any 9 x 9 Sudoku grid such as the example shown on the Wikipedia [Sudoku entry](http://en.wikipedia.org/wiki/Sudoku).
 
-I opted to build the app using Node.js and JavaScript. The app currently solves Sudoku puzzles on The Times' website which have a rating of "mild", "easy" or difficult". It does not currently solve puzzles with a rating of "fiendish" and the logic would need to be improved in order achieve this.
+I opted to build the app using Node.js and JavaScript. The app currently solves Sudoku puzzles on The Times' [website](http://www.thetimes.co.uk/tto/puzzles/sudoku) which have a rating of "mild", "easy" or difficult". It does not currently solve puzzles with a rating of "fiendish" and the logic would need to be improved in order achieve this.
 
 The live version of the app is available [here](https://eds-sudoku-solver.herokuapp.com).
 
