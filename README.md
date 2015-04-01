@@ -37,20 +37,20 @@ The live version of the app is available [here](https://eds-sudoku-solver.heroku
 
 To try the app locally, please clone this repository on your machine:
 
-```
+```sh
 $ git clone https://github.com/ejbyne/sudoku-solver.git
 ```
 
 Change into the directory and npm install the modules:
 
-```
+```sh
 $ cd sudoku-solver
 $ npm install
 ```
 
 Start the node server:
 
-```
+```sh
 $ npm start
 ```
 
@@ -58,7 +58,7 @@ Visit <a href="http://localhost:3000">http://localhost:3000</a>.
 
 Run the tests:
 
-```
+```sh
 $ grunt
 ```
 
