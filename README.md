@@ -64,6 +64,6 @@ $ grunt
 
 ## To do list
 
-- Improve logic to solve "fiendish" rated puzzles
+- Improve logic to solve "fiendish" rated puzzles (based on The Times' ratings)
 - Turn into single page app with Ajax requests
 - Improve CSS
